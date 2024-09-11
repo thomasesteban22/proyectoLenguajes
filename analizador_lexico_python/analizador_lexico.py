@@ -1,4 +1,4 @@
-import math  # Si es necesario usar alguna funcionalidad de math
+
 
 # Palabras reservadas de Python
 palabras_reservadas = [
@@ -45,6 +45,12 @@ def analizar_linea(linea, numero_linea):
         if char.isspace():  # Ignorar espacios
             posicion += 1
             continue
+
+        # Verificar si es un comentario
+        if char == '#':
+            comentario = linea[posicion:]
+            tokens_encontrados.append(f"<tk_comentario,{comentario.strip()},{numero_linea},{posicion + 1}>")
+            break  # Salir del ciclo, ya que el resto de la línea es un comentario
 
         # Verificar si es una cadena de texto
         if char == '"' or char == "'":
