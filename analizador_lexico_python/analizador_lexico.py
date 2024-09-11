@@ -1,5 +1,3 @@
-
-
 # Palabras reservadas de Python
 palabras_reservadas = [
     'False', 'class', 'finally', 'is', 'return', 'None', 'continue', 'for', 'lambda',
@@ -12,7 +10,8 @@ palabras_reservadas = [
 simbolos = {
     '(': 'tk_par_izq', ')': 'tk_par_der', '{': 'tk_llave_izq', '}': 'tk_llave_der',
     '=': 'tk_asig', '+': 'tk_suma', '-': 'tk_resta', '*': 'tk_mult', '/': 'tk_div',
-    '.': 'tk_punto', ':': 'tk_dos_puntos', '!=': 'tk_distinto', '==': 'tk_igual'
+    '.': 'tk_punto', ':': 'tk_dos_puntos', '!=': 'tk_distinto', '==': 'tk_igual',
+    'λ': 'tk_lambda', ',': 'tk_coma',
 }
 
 
@@ -54,7 +53,12 @@ def analizar_linea(linea, numero_linea):
                 posicion += 1
             tokens_encontrados.append(f"<tk_entero,{linea[inicio:posicion]},{numero_linea},{inicio + 1}>")
 
-        # Verificar si es un símbolo
+        # Verificar si es un operador de dos caracteres
+        elif linea[posicion:posicion+2] in simbolos:
+            tokens_encontrados.append(f"<{simbolos[linea[posicion:posicion+2]]},{numero_linea},{posicion + 1}>")
+            posicion += 2  # Avanzar 2 posiciones
+
+        # Verificar si es un símbolo de un solo carácter
         elif char in simbolos:
             tokens_encontrados.append(f"<{simbolos[char]},{numero_linea},{posicion + 1}>")
             posicion += 1

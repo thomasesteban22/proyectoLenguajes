@@ -1,3 +1,1 @@
-class Animal:
-    def sonido(self):
-        return "moo"
+2!=2

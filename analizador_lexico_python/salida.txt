@@ -1,11 +1,1 @@
-<class,1,1>
-<id,Animal,1,7>
-<tk_dos_puntos,1,13>
-<def,2,5>
-<id,sonido,2,9>
-<tk_par_izq,2,15>
-<id,self,2,16>
-<tk_par_der,2,20>
-<tk_dos_puntos,2,21>
-<return,3,9>
-<tk_cadena,"moo",3,16>
+<tk_entero,2,1,1>
