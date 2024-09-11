@@ -15,12 +15,14 @@ simbolos = {
     '.': 'tk_punto', ':': 'tk_dos_puntos', '!=': 'tk_distinto', '==': 'tk_igual'
 }
 
+
 # Función para verificar si un string representa un número entero
 def es_entero(cadena):
     for char in cadena:
         if not char.isdigit():
             return False
     return True
+
 
 # Función para verificar si un string es un identificador o palabra reservada
 def es_identificador(lexema):
@@ -31,18 +33,19 @@ def es_identificador(lexema):
         return True
     return False
 
+
 # Función para analizar una línea de código y generar tokens
 def analizar_linea(linea, numero_linea):
     tokens_encontrados = []
     posicion = 0
-    
+
     while posicion < len(linea):
         char = linea[posicion]
 
         if char.isspace():  # Ignorar espacios
             posicion += 1
             continue
-        
+
         # Verificar si es una cadena de texto
         if char == '"' or char == "'":
             inicio = posicion
@@ -51,23 +54,23 @@ def analizar_linea(linea, numero_linea):
                 posicion += 1
             if posicion < len(linea):  # Encontró el final de la cadena
                 posicion += 1
-                tokens_encontrados.append(f"<tk_cadena,{linea[inicio:posicion]},{numero_linea},{inicio+1}>")
+                tokens_encontrados.append(f"<tk_cadena,{linea[inicio:posicion]},{numero_linea},{inicio + 1}>")
             else:
-                print(f">>> Error léxico(linea:{numero_linea},posicion:{inicio+1})")
-                return []
+                print(f">>> Error léxico(linea:{numero_linea},posicion:{inicio + 1})")
+                return tokens_encontrados  # Devolver tokens antes del error
 
         # Verificar si es un número
         elif char.isdigit():
             inicio = posicion
             while posicion < len(linea) and linea[posicion].isdigit():
                 posicion += 1
-            tokens_encontrados.append(f"<tk_entero,{linea[inicio:posicion]},{numero_linea},{inicio+1}>")
-        
+            tokens_encontrados.append(f"<tk_entero,{linea[inicio:posicion]},{numero_linea},{inicio + 1}>")
+
         # Verificar si es un símbolo
         elif char in simbolos:
-            tokens_encontrados.append(f"<{simbolos[char]},{numero_linea},{posicion+1}>")
+            tokens_encontrados.append(f"<{simbolos[char]},{numero_linea},{posicion + 1}>")
             posicion += 1
-        
+
         # Verificar si es un identificador o palabra reservada
         elif char.isalpha() or char == '_':
             inicio = posicion
@@ -75,16 +78,17 @@ def analizar_linea(linea, numero_linea):
                 posicion += 1
             lexema = linea[inicio:posicion]
             if lexema in palabras_reservadas:
-                tokens_encontrados.append(f"<{lexema},{numero_linea},{inicio+1}>")
+                tokens_encontrados.append(f"<{lexema},{numero_linea},{inicio + 1}>")
             else:
-                tokens_encontrados.append(f"<id,{lexema},{numero_linea},{inicio+1}>")
-        
+                tokens_encontrados.append(f"<id,{lexema},{numero_linea},{inicio + 1}>")
+
         # Si no es ninguno de los anteriores, error léxico
         else:
-            print(f">>> Error léxico(linea:{numero_linea},posicion:{posicion+1})")
-            return []
-    
+            print(f">>> Error léxico(linea:{numero_linea},posicion:{posicion + 1})")
+            return tokens_encontrados  # Devolver tokens antes del error
+
     return tokens_encontrados
+
 
 # Función principal para leer el archivo de entrada y generar el archivo de salida
 def analizar_archivo(entrada, salida):
@@ -101,6 +105,7 @@ def analizar_archivo(entrada, salida):
         print(f"Análisis léxico completado. Revisa el archivo de salida: {salida}")
     except FileNotFoundError:
         print(f"Error: No se pudo encontrar el archivo {entrada}")
+
 
 # Ejemplo de cómo ejecutar el programa
 if __name__ == "__main__":
