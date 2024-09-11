@@ -16,24 +16,6 @@ simbolos = {
 }
 
 
-# Función para verificar si un string representa un número entero
-def es_entero(cadena):
-    for char in cadena:
-        if not char.isdigit():
-            return False
-    return True
-
-
-# Función para verificar si un string es un identificador o palabra reservada
-def es_identificador(lexema):
-    if lexema[0].isalpha() or lexema[0] == '_':
-        for char in lexema[1:]:
-            if not (char.isalnum() or char == '_'):
-                return False
-        return True
-    return False
-
-
 # Función para analizar una línea de código y generar tokens
 def analizar_linea(linea, numero_linea):
     tokens_encontrados = []
