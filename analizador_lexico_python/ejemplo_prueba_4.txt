@@ -1,0 +1,25 @@
+# Error léxico: Falta de comillas para cerrar la cadena
+mensaje = "Hola mundo
+
+# Error léxico: Uso incorrecto de un carácter especial
+resultado = 10 #+ 5
+
+# Error léxico: Uso incorrecto de un identificador
+7variable = 42
+
+# Error léxico: Símbolo no reconocido
+@_nombre = "Juan"
+
+# Error léxico: Números decimales mal formados
+numero = 3.14.159
+
+# Error léxico: Comentario mal formado
+# Este es un comentario no cerrado
+
+# Error léxico: Tabulación incorrecta
+def funcion():
+    print("Hola")
+  print("Mundo")
+
+# Error léxico: Símbolos no válidos en un identificador
+mi-variable = 10

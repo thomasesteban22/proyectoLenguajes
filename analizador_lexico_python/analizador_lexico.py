@@ -104,6 +104,6 @@ def analizar_archivo(entrada, salida):
 
 # Ejemplo de cómo ejecutar el programa
 if __name__ == "__main__":
-    archivo_entrada = 'codigo_fuente.py'  # Nombre del archivo de entrada
+    archivo_entrada = 'ejemplo_prueba_2.txt'  # Nombre del archivo de entrada
     archivo_salida = 'salida.txt'  # Nombre del archivo de salida
     analizar_archivo(archivo_entrada, archivo_salida)
